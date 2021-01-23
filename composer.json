@@ -1,0 +1,19 @@
+{
+  "name": "egorbaklach/helpers",
+  "type": "library",
+  "description": "Helpers",
+  "license": "MIT",
+  "require": {
+    "php": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Helpers\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "dev"
+}
