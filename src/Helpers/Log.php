@@ -14,7 +14,7 @@ final class Log
             self::$file = false;
         }
 
-        return empty(self::$file);
+        return self::$file === false;
     }
 
     private static function setFile(): void
@@ -42,13 +42,13 @@ final class Log
             break;
         }
 
-        if(empty(self::$file))
+        if(self::$file === false)
         {
             self::$file = self::$path.'/log_'.date('Ymd_His').'.log';
         }
     }
 
-    private static function getContent($content)
+    private static function getContent($content): string
     {
         switch(gettype($content))
         {
@@ -58,7 +58,7 @@ final class Log
 
                 foreach($content as $key => &$value)
                 {
-                    $value = $key." => ".self::getContent($value)."\r";
+                    $value = $key." => ".self::getContent($value).PHP_EOL;
                 }
 
                 $content = implode('', $content);
@@ -71,15 +71,10 @@ final class Log
                 break;
         }
 
-        if(empty($content) && $content != '0')
-        {
-            $content = "Value are empty";
-        }
-
         return $content;
     }
 
-    public static function add2log($content, $one_string = false)
+    public static function add2log($content, $one_string = false): bool
     {
         if(self::checkFile())
         {
@@ -92,17 +87,15 @@ final class Log
 
         if(!$one_string)
         {
-            $content = implode('', [
+            $content = implode(PHP_EOL, [
                 date('Y-m-d H:i:s'),
-                "\r",
                 $arBacktrace[0]['file'].' on line '.$arBacktrace[0]["line"].':',
-                "\r",
                 $content,
-                "\r--------------------\r"
+                "--------------------"
             ]);
         }
 
-        if(file_put_contents(static::$file, $content, FILE_APPEND | LOCK_EX) === false)
+        if(file_put_contents(static::$file, $content.PHP_EOL, FILE_APPEND | LOCK_EX) === false)
         {
             return false;
         }
