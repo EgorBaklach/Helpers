@@ -2,7 +2,7 @@
 
 final class Shower
 {
-    public static function printPre($var, $title = false)
+    public static function printPre($var, $title = false): string
     {
         $html = '';
 
