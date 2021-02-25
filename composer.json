@@ -8,7 +8,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Helpers\\": "src/Helpers"
+      "Helpers\\": "src"
     }
   },
   "config": {
