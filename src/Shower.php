@@ -1,4 +1,4 @@
-<?namespace Helpers;
+<?php namespace Helpers;
 
 final class Shower
 {
@@ -39,7 +39,7 @@ final class Shower
             }
 
             $html .= '<span class="headlink">';
-            $html .= '<span class="showlink" onclick="var parent=this.parentElement,pClass=parent.className,arMatches=pClass.match(/active/g)||[];parent.className=arMatches.length?pClass.replace(/ active/g,\'\'):pClass+\' active\';">'.(is_array($var) ? 'array ' : 'object '.get_class($var)).' ('.count((array)$var).')'.'</span> (';
+            $html .= '<span class="showlink" onclick="const parent=this.parentElement,pClass=parent.className,arMatches=pClass.match(/active/g)||[];parent.className=arMatches.length?pClass.replace(/ active/g,\'\'):pClass+\' active\';">'.(is_array($var) ? 'array ' : 'object '.get_class($var)).' ('.count((array)$var).')'.'</span> (';
             $html .= '<ul>';
 
             foreach ($var as $key => $value)

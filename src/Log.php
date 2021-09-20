@@ -1,4 +1,4 @@
-<?namespace Helpers;
+<?php namespace Helpers;
 
 final class Log
 {
@@ -95,7 +95,7 @@ final class Log
             ]);
         }
 
-        if(file_put_contents(static::$file, $content.PHP_EOL, FILE_APPEND | LOCK_EX) === false)
+        if(file_put_contents(self::$file, $content.PHP_EOL, FILE_APPEND | LOCK_EX) === false)
         {
             return false;
         }
